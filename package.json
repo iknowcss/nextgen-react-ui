@@ -1,0 +1,11 @@
+{
+  "name": "nextgen-react-ui",
+  "version": "1.0.0",
+  "description": "Core NextGen UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BT Financial Group",
+  "license": "LicenseRef-LICENSE"
+}
