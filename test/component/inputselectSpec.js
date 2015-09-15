@@ -1,4 +1,4 @@
-describe('inputselect Component', function () {
+describe('inputselect Component', () => {
   it('runs', () => {
 
   });

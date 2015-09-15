@@ -4,14 +4,15 @@ module.exports = function (config) {
     autoWatch: true,
     frameworks: ['mocha'],
     browsers: ['PhantomJS'],
-    reporters: ['coverage'],
+    //reporters: ['coverage'],
+    reporters: ['progress'],
 
     files: [
       '**/*Spec.js'
     ],
 
     preprocessors: {
-      '../src/js/**.js': ['coverage'],
+      //'../src/js/**.js': ['coverage'],
       '**/*Spec.js': ['webpack']
     },
 
