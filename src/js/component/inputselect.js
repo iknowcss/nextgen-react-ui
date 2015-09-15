@@ -11,7 +11,7 @@ export default class InputSelect extends Component {
 
     let placeholder;
     if (this.props.placeholder) {
-      placeholder = <option value="">{this.props.placeholder}</option>;
+      placeholder = <option>{this.props.placeholder}</option>;
     }
 
     let options;

@@ -86,7 +86,7 @@ describe('inputselect Component', () => {
         placeholder="Select"
       />);
       expect(options).to.eql([
-        { value: '', text: 'Select' },
+        { value: undefined, text: 'Select' },
         { value: 'A', text: 'Alpha' },
         { value: 'B', text: 'Bravo' },
         { value: 'C', text: 'Charlie' }
@@ -95,8 +95,9 @@ describe('inputselect Component', () => {
 
     it('renders empty options with a placeholder', () => {
       options = buildOptionsFor(<InputSelect placeholder="Select"/>);
+      console.log(options);
       expect(options).to.eql([
-        { value: '', text: 'Select' }
+        { value: undefined, text: 'Select' }
       ]);
     });
 
