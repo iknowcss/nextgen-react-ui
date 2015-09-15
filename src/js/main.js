@@ -1,7 +1,13 @@
 import React from 'react/addons';
-import Default from './screen/default';
+import Demo from './demo/inputselect';
+
+const element = <Demo/>;
 
 React.render(
-  <Default/>,
+  element,
   document.getElementById('app-container')
 );
+
+document.body.ondblclick = function () {
+  console.log(React.renderToString(element));
+};
