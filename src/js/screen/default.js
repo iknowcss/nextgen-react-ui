@@ -1,12 +1,20 @@
 import React, {Component} from 'react/addons';
 
-export default class Default extends Component{
+import FormInputSelect from '../component/forminputselect';
+
+export default class Default extends Component {
 
   render() {
     return (
-      <div>
-        Hello, world!
-      </div>
+      <FormInputSelect
+        label="Mobile"
+        placeholder="Select"
+        tip="Required"
+        name="phone"
+        errorMessages={{
+          required: 'Mobile is required'
+        }}
+      />
     );
   }
 

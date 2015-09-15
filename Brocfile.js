@@ -11,7 +11,7 @@ var html = funnel(projectSrc, { include: [ 'html/**/*' ] });
 // JS webpack
 var scripts = webpackify(projectSrc, {
   entry: './js/main',
-  output: { filename: 'dist/app.js' },
+  output: { filename: 'js/app.js' },
   externals: [
     { 'react': 'React' }
   ],
