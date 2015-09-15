@@ -9,6 +9,17 @@ export default class InputSelect extends Component {
       'compact': this.props.compact
     });
 
+    let placeholder = this.props.placeholder ? (
+      <option value="">{this.props.placeholder}</option>
+    ) : null;
+
+    let options;
+    if (this.props.options) {
+      options = this.props.options.map(o => 
+        <option value="{o.value}">{o.label}</option>
+      );
+    }
+
     return (
       <div className={className}>
         <select 
@@ -16,14 +27,8 @@ export default class InputSelect extends Component {
           id={this.props.elementId}
           aria-describedby={this.props.describe}
         >
-          (placeholder ? (
-            <option value="" selected="selected">{{placeholder}}</option>
-          ) : null)
-          
-          options.map(option => 
-            <option value="{o.value}">{o.label}</option>
-          )
-
+          {placeholder}
+          {options}
         </select>
       </div>
 
@@ -42,5 +47,6 @@ InputSelect.propTypes = {
 };
 
 InputSelect.defaultValues = {
-  compact: false
+  compact: false,
+  options: []
 };

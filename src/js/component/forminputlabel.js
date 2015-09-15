@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react/addons';
 
-class FormInputLabel extends Component {
+export default class FormInputLabel extends Component {
 
   render() {
     if (!this.props.label) return null;
