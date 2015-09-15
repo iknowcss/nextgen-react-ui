@@ -9,9 +9,10 @@ export default class InputSelect extends Component {
       'compact': this.props.compact
     });
 
-    let placeholder = this.props.placeholder ? (
-      <option value="">{this.props.placeholder}</option>
-    ) : null;
+    let placeholder;
+    if (this.props.placeholder) {
+      placeholder = <option value="">{this.props.placeholder}</option>;
+    }
 
     let options;
     if (this.props.options) {

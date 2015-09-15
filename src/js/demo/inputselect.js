@@ -7,9 +7,14 @@ export default class Default extends Component {
   render() {
     return (
       <InputSelect
-        placeholder="Select"
-        tip="Required"
         name="phone"
+        placeholder="Select"
+        options={[
+          { value: 'A', label: 'Alpha' },
+          { value: 'B', label: 'Bravo' },
+          { value: 'C', label: 'Charlie' },
+          { value: 'D', label: 'Delta' },
+        ]}
       />
     );
   }
