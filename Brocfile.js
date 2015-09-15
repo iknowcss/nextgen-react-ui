@@ -10,19 +10,19 @@ var html = funnel(projectSrc, { include: [ 'html/**/*' ] });
 
 // JS webpack
 var scripts = webpackify(projectSrc, {
-    entry: './js/main',
-    output: { filename: 'dist/app.js' },
-    externals: [
-        { 'react': 'React' }
-    ],
-    module: {
-        preLoaders: [
-            {
-                test: /\.js$/,
-                loader: 'babel-loader'
-            }
-        ]
-    }
+  entry: './js/main',
+  output: { filename: 'dist/app.js' },
+  externals: [
+    { 'react': 'React' }
+  ],
+  module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader'
+      }
+    ]
+  }
 });
 
 module.exports = mergeTrees([ html, scripts ]);

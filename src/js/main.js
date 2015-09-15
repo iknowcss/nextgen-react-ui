@@ -1,3 +1,7 @@
-var inputtext = require('./component/inputtext');
+import React from 'react/addons';
+import Default from './screen/default';
 
-console.log('done');
+React.render(
+  <Default/>,
+  document.getElementById('app-container')
+);
