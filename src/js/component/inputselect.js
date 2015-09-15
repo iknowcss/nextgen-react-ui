@@ -16,8 +16,8 @@ export default class InputSelect extends Component {
 
     let options;
     if (this.props.options) {
-      options = this.props.options.map(o => 
-        <option value="{o.value}">{o.label}</option>
+      options = this.props.options.map((o, i) =>
+        <option value={o.value} key={i}>{o.label}</option>
       );
     }
 
