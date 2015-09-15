@@ -3,7 +3,7 @@ module.exports = function (config) {
     basePath: '',
     autoWatch: true,
     frameworks: ['mocha'],
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
     //reporters: ['coverage'],
     reporters: ['progress'],
 
@@ -20,7 +20,8 @@ module.exports = function (config) {
       'karma-webpack',
       'karma-mocha',
       'karma-coverage',
-      'karma-phantomjs-launcher'
+      'karma-phantomjs-launcher',
+      'karma-chrome-launcher'
     ],
 
     webpack: {
