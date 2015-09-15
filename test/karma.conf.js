@@ -2,7 +2,7 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     autoWatch: true,
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'chai'],
     browsers: ['Chrome'],
     //reporters: ['coverage'],
     reporters: ['progress'],
@@ -19,6 +19,7 @@ module.exports = function (config) {
     plugins: [
       'karma-webpack',
       'karma-mocha',
+      'karma-chai',
       'karma-coverage',
       'karma-phantomjs-launcher',
       'karma-chrome-launcher'
