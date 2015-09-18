@@ -45,14 +45,7 @@ describe('validation', () => {
     { validation: false, testCase: '1#' },
   ]);
 
-  validate('telephone.blur.customFormat', [
-    { validation: true, testCase: ' ()+0551000000' },
-    { validation: true, testCase: ' ()+61' },
-    { validation: true, testCase: ' ()+6155' },
-    { validation: true, testCase: ' ()+61551' },
-    { validation: true, testCase: ' ()+615510000000000' },
-    { validation: true, testCase: ' ()+1' },
-    { validation: true, testCase: ' ()+123456789012345' },
+  let telephoneBlurInvalidCases = [
     { validation: false, testCase: ' ' },
     { validation: false, testCase: '#' },
     { validation: false, testCase: ' ()+ 01234567890' },
@@ -67,11 +60,21 @@ describe('validation', () => {
     { validation: false, testCase: ' ()+615500000000000' },
     { validation: false, testCase: ' ()+6155100000000000' },
     { validation: false, testCase: ' ()+1234567890123456' },
+  ];
+
+  validate.only('telephone.blur.customFormat', [
+    { validation: true, testCase: ' ()+0551000000' },
+    { validation: true, testCase: ' ()+61' },
+    { validation: true, testCase: ' ()+6155' },
+    { validation: true, testCase: ' ()+61551' },
+    { validation: true, testCase: ' ()+615510000000000' },
+    { validation: true, testCase: ' ()+1' },
+    { validation: true, testCase: ' ()+123456789012345' },
     { validation: null, testCase: undefined },
     { validation: null, testCase: '' },
-  ]);
+  ].concat(telephoneBlurInvalidCases));
 
-  validate.only('telephone.convertForModel', [
+  validate('telephone.convertForModel', [
     { formatResult: ' ',                     testCase: ' ' },
     { formatResult: '#',                     testCase: '#' },
     { formatResult: ' ()+ 01234567890',      testCase: ' ()+ 01234567890' },
