@@ -65,7 +65,6 @@
         if (!r.hasValidCharacters(value)) {
             return false;
         }
-
         var cleanValue = r.clean(value);
         if (r.treatAsShortAU(cleanValue)) {
             return r.validCleanShortMobileAU.test(cleanValue);

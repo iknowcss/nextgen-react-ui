@@ -48,7 +48,7 @@ var all = {
             required: true
         },
         convertForModel: function (value) {
-            if (!this.validationTypes.mobile.blur.customFormat.call(this, value)) {
+            if (!all.mobile.blur.customFormat.call(this, value)) {
                 return value;
             }
             value = value.replace(/[ \(\)\+]/g, '');
@@ -56,7 +56,7 @@ var all = {
             return value;
         },
         convertForView: function (value) {
-            if (!this.validationTypes.mobile.blur.customFormat.call(this, value)) {
+            if (!all.mobile.blur.customFormat.call(this, value)) {
                 return value;
             }
             return format.formatTelephone(value);

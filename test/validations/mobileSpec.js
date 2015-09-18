@@ -64,11 +64,14 @@ describe('mobile validation', () => {
     .concat(blurInvalidCases)
   );
 
-  // validate(telephoneValidation, 'telephone.convertForModel', [
-  //   { testCase: ' 1(2)3+4)5(6 7++89  ', formatResult: '123456789' }
-  // ].concat(telephoneBlurInvalidCases.map(test => (
-  //   { testCase: test.testCase, formatResult: test.testCase }
-  // ))));
+  validate.only(mobileValidation, 'mobile.convertForModel', [
+    { testCase: ' 0(4)0+1)5(6 7++890  ', formatResult: '0401567890' },
+    { testCase: ' 0(5)0+1)5(6 7++890  ', formatResult: '0501567890' },
+    { testCase: ' 61(4)0+1)5(6 7++890  ', formatResult: '0401567890' },
+    { testCase: ' 61(5)0+1)5(6 7++890  ', formatResult: '0501567890' },
+  ].concat(blurInvalidCases.map(test => (
+    { testCase: test.testCase, formatResult: test.testCase }
+  ))));
 
   // validate(telephoneValidation, 'telephone.convertForView', []
   //   .concat(telephoneBlurValidCases.map(test => (
