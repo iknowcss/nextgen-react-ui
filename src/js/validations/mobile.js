@@ -16,24 +16,26 @@ var all = {
     mobile: {
         change: {
             customFormat: function (value) {
-                // Check that valid chars have been entered
-                var result = /^[0-9 \(\)\+]*$/.test(value);
-
-                if (result) {
-                    value = value.replace(/[ \(\)\+]/g, '');
-                    // Check that mobile number without 61 doesn't have more than 10 digits
-                    if (value[0] === '0') {
-                        if (value.length > 10) {
-                            return false;
-                        }
-                    } else if (/^61/.test(value)) {
-                        // Check that number with 61 doesn't have more than 11 digits
-                        if (value.length > 11) {
-                            return false;
-                        }
-                    }
+                // If there are any invalid characters then FAIL
+                if (!phoneValidation.hasValidCharacters(value)) {
+                    return false;
                 }
-                return result;
+
+                // If it's empty after a cleaning then PASS
+                var cleanValue = phoneValidation.clean(value);
+                if (cleanValue.length === 0) {
+                    return true;
+                }
+
+                // Verify length constraints for Australian numbers (short and long)
+                if (phoneValidation.treatAsShortAU(cleanValue)) {
+                    return cleanValue.length <= phoneValidation.shortMaxLengthAU;
+                }
+                if (phoneValidation.treatAsLongAU(cleanValue)) {
+                    return cleanValue.length <= phoneValidation.longMaxLengthAU;
+                }
+                
+                return true;
             }
         },
         blur: {

@@ -2,7 +2,7 @@ import mobileValidation from '../../src/js/validations/mobile';
 import {validate} from '../validationUtil'
 
 describe('mobile validation', () => {
-  validate(mobileValidation, 'mobile.change.customFormat', [
+  validate.only(mobileValidation, 'mobile.change.customFormat', [
     { validation: true, testCase: '' },
     { validation: true, testCase: ' ()+' },
     { validation: true, testCase: ' ()+ 0123456789' },
@@ -10,6 +10,8 @@ describe('mobile validation', () => {
     { validation: true, testCase: ' ()+ 0' },
     { validation: true, testCase: ' ()+ 61000000000' },
     { validation: true, testCase: ' ()+ 61' },
+    { validation: true, testCase: ' ()+ 1111' },
+    { validation: true, testCase: ' ()+ 111111111111111111111111111111111' },
     { validation: false, testCase: '#' },
     { validation: false, testCase: ' ()+ 01234567890' },
     { validation: false, testCase: '0#' },

@@ -10,9 +10,21 @@
     validCleanShortAU: /^0(?!550)[0-9]{9}$/,
     validCleanLongAU: /^61(?!550)[0-9]{0,13}$/,
 
+    shortMaxLengthAU: 10,
+    longMaxLengthINTL: 15,
+    longMaxLengthAU: 11,
+
     clean: function (value) {
         var stringValue = value.toString();
         return stringValue.replace(r.delimitCharactersG, '');
+    },
+
+    treatAsShortAU: function (value) {
+        return r.startShortAU.test(value);
+    },
+
+    treatAsLongAU: function (value) {
+        return r.startLongAU.test(value);
     },
 
     isValid: function (value) {
