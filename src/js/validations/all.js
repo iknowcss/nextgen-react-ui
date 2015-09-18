@@ -10,7 +10,7 @@ var phoneValidation = (function () {
         validCleanLongLengthINTL: /^(?!0)[0-9]{1,15}$/,
         validCleanLongMobileLengthAU: /^(?=61)[0-9]{1,11}$/,
         validCleanShortAU: /^0(?!550)[0-9]{9}$/,
-        validCleanLongAU: /^61(?!550)[0-9]{1,}$/,
+        validCleanLongAU: /^61(?!550)[0-9]{0,13}$/,
 
         clean: function (value) {
             var stringValue = value.toString();
@@ -22,7 +22,6 @@ var phoneValidation = (function () {
             if (typeof value === 'undefined') {
                 return false;
             }
-
             var cleanValue = r.clean(value);
             if (cleanValue.length === 0) {
                 return false;
@@ -71,42 +70,10 @@ var all = {
         },
         blur: {
             customFormat: function (value) {
-                if (_.isUndefined(value)) {
+                if (!value) {
                     return null;
                 }
-
-                value = value.toString();
-
-                // First check that only valid chars have been entered
-                if (!all.telephone.change.customFormat(value)) {
-                    return false;
-                }
-
-                // If it's blank then ignore and let the 'required' rule show an error
-                if (value === '') {
-                    return null;
-                }
-
-                // Remove non-digit chars
-                value = value.replace(/[ \(\)\+]/g, '');
-
-                // Invalid if there are no digits
-                if (value.length < 1) {
-                    return false;
-                }
-
-                if (value[0] === '0') {
-                    //Australian numbers should not start with 0550
-                    return (!(/^0550/.test(value)) && value.length === 10);
-                } else if (/^61/.test(value)) {
-                    //Australian numbers should not start with 0550
-                    return (!(/^61550/.test(value)));
-                } else if (value.length > 15) {
-                    // Check that international doesn't have more than 15 digits
-                    return false;
-                }
-
-                return true;
+                return phoneValidation.isValid(value);
             },
         }
     }

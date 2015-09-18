@@ -1,7 +1,38 @@
 import all from '../../src/js/validations/all';
 import get from 'lodash/object/get';
 
-describe.only('', () => {
+function xvalidate() {}
+
+function validate(path, validCases, invalidCases, nullCases, isOnly) {
+  const sut = get(all, path);
+  const desc = isOnly ? describe.only : describe;
+
+  desc(path, () => {
+    (validCases || []).forEach(testCase => {
+      it(`"${testCase}" is valid`, () => {
+        expect(sut(testCase)).to.be.true;
+      });
+    });
+
+    (invalidCases || []).forEach(testCase => {
+      it(`"${testCase}" is invalid`, () => {
+        expect(sut(testCase)).to.be.false;
+      });
+    });
+
+    (nullCases || []).forEach(testCase => {
+      it(`"${testCase}" is null`, () => {
+        expect(sut(testCase)).to.be.null;
+      });
+    });
+  });
+}
+
+validate.only = function (path, validCases, invalidCases, nullCases) {
+  return validate(path, validCases, invalidCases, nullCases, true);
+};
+
+describe.only('validation', () => {
     validate('telephone.change.customFormat', [
       '',
       ' ()+',
@@ -46,27 +77,3 @@ describe.only('', () => {
       '',
     ]);
 });
-
-function validate(path, validCases, invalidCases, nullCases) {
-  const sut = get(all, path);
-
-  describe(path, () => {
-    (validCases || []).forEach(testCase => {
-      it(`"${testCase}" is valid`, () => {
-        expect(sut(testCase)).to.be.true;
-      });
-    });
-
-    (invalidCases || []).forEach(testCase => {
-      it(`"${testCase}" is invalid`, () => {
-        expect(sut(testCase)).to.be.false;
-      });
-    });
-
-    (nullCases || []).forEach(testCase => {
-      it(`"${testCase}" is null`, () => {
-        expect(sut(testCase)).to.be.null;
-      });
-    });
-  });
-}
