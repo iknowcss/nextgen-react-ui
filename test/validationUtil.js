@@ -5,6 +5,17 @@ export function validate(validator, path, tests, isOnly) {
   const desc = isOnly ? describe.only : describe;
 
   desc(path, () => {
+    if (typeof sut !== 'function') {
+      before(() => {
+        console.error(`couldn't find validator ${path}`);
+      });
+
+      it('validator exists', () => {
+        expect(sut).to.be.instanceOf(Function);
+      });
+      return;
+    }
+
     (tests || []).forEach(test => {
       if (test.hasOwnProperty('validation')) {
         let expected = test.validation;
