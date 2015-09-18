@@ -92,12 +92,10 @@ var all = {
             return phoneValidation.clean(value);
         },
         convertForView: function (value) {
-            // log('convertForView in: ', value);
-
-            if (!all.telephone.blur.customFormat.call(this, value)) {
+            // Do not convert if it's invalid
+            if (!phoneValidation.isValid(value)) {
                 return value;
             }
-
             return format.formatTelephone(value);
         }
     }
