@@ -51,7 +51,7 @@ var all = {
                     return null;
                 }
 
-                if (!this.validationTypes.mobile.change.customFormat(value)) {
+                if (!all.mobile.change.customFormat(value)) {
                     return false;
                 }
 
@@ -67,8 +67,6 @@ var all = {
                     return ((/^614|615/.test(value)) && value.length === 11);
                 }
                 return false;
-                //var re = /^(?:\+?61|0)4|5\)?(?:[ -]?[0-9]){7}[0-9]$/;
-                //return re.test(value);
             },
             required: true
         },
