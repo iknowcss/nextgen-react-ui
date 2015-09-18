@@ -45,6 +45,16 @@ describe('validation', () => {
     { validation: false, testCase: '1#' },
   ]);
 
+  let telephoneBlurValidCases = [
+    { validation: true, testCase: ' ()+0551000000' },
+    { validation: true, testCase: ' ()+61' },
+    { validation: true, testCase: ' ()+6155' },
+    { validation: true, testCase: ' ()+61551' },
+    { validation: true, testCase: ' ()+615510000000000' },
+    { validation: true, testCase: ' ()+1' },
+    { validation: true, testCase: ' ()+123456789012345' },
+  ];
+
   let telephoneBlurInvalidCases = [
     { validation: false, testCase: ' ' },
     { validation: false, testCase: '#' },
@@ -60,24 +70,28 @@ describe('validation', () => {
     { validation: false, testCase: ' ()+615500000000000' },
     { validation: false, testCase: ' ()+6155100000000000' },
     { validation: false, testCase: ' ()+1234567890123456' },
-  ];
-
-  validate('telephone.blur.customFormat', [
-    { validation: true, testCase: ' ()+0551000000' },
-    { validation: true, testCase: ' ()+61' },
-    { validation: true, testCase: ' ()+6155' },
-    { validation: true, testCase: ' ()+61551' },
-    { validation: true, testCase: ' ()+615510000000000' },
-    { validation: true, testCase: ' ()+1' },
-    { validation: true, testCase: ' ()+123456789012345' },
     { validation: null, testCase: undefined },
     { validation: null, testCase: '' },
-  ].concat(telephoneBlurInvalidCases));
+  ];
 
-  validate.only('telephone.convertForModel', [
+  validate('telephone.blur.customFormat', []
+    .concat(telephoneBlurValidCases)
+    .concat(telephoneBlurInvalidCases)
+  );
+
+  validate('telephone.convertForModel', [
     { testCase: ' 1(2)3+4)5(6 7++89  ', formatResult: '123456789' }
   ].concat(telephoneBlurInvalidCases.map(test => (
     { testCase: test.testCase, formatResult: test.testCase }
   ))));
+
+  validate.only('telephone.convertForView', []
+    .concat(telephoneBlurValidCases.map(test => (
+      { testCase: test.testCase, formatResult: `formatTelephone(${test.testCase})` }
+    )))
+    .concat(telephoneBlurInvalidCases.map(test => (
+      { testCase: test.testCase, formatResult: test.testCase }
+    ))
+  ));
 
 });

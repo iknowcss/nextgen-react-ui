@@ -46,6 +46,14 @@ var phoneValidation = (function () {
 
 ///////////////
 
+var format = {
+    formatTelephone(value) {
+        return `formatTelephone(${value})`;
+    }
+}
+
+///////////////
+
 var _ = require('underscore');
 
 var all = {
@@ -83,6 +91,15 @@ var all = {
             }
             return phoneValidation.clean(value);
         },
+        convertForView: function (value) {
+            // log('convertForView in: ', value);
+
+            if (!all.telephone.blur.customFormat.call(this, value)) {
+                return value;
+            }
+
+            return format.formatTelephone(value);
+        }
     }
 };
 
