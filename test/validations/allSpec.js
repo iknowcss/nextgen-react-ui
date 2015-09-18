@@ -22,13 +22,13 @@ describe('validations', () => {
 
     validCases.forEach(testCase => {
       it(`"${testCase}" is VALID`, () => {
-        expect(all.change.customFormat(testCase)).to.be.true;
+        expect(all.telephone.change.customFormat(testCase)).to.be.true;
       });
     });
 
     invalidCases.forEach(testCase => {
       it(`"${testCase}" is INVALID`, () => {
-        expect(all.change.customFormat(testCase)).to.be.false;
+        expect(all.telephone.change.customFormat(testCase)).to.be.false;
       });
     });
   });
