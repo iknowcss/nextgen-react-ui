@@ -1,11 +1,4 @@
-var mobileValidation = (function () {
-
-    var r = {
-    };
-
-    return r;
-
-}());
+import phoneValidation from './phone';
 
 ///////////////
 

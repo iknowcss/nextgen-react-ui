@@ -2,7 +2,7 @@ import mobileValidation from '../../src/js/validations/mobile';
 import {validate} from '../validationUtil'
 
 describe('mobile validation', () => {
-  validate.only(mobileValidation, 'mobile.change.customFormat', [
+  validate(mobileValidation, 'mobile.change.customFormat', [
     { validation: true, testCase: '' }
   ]);
 
