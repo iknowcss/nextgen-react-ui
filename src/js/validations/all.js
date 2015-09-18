@@ -75,7 +75,15 @@ var all = {
                 }
                 return phoneValidation.isValid(value);
             },
-        }
+        },
+        convertForModel: function (value) {
+            // Do not convert if it's invalid
+            if (!all.telephone.blur.customFormat.call(this, value)) {
+                return value;
+            }
+            value = value.replace(/[ \(\)\+]/g, '');
+            return value;
+        },
     }
 };
 
