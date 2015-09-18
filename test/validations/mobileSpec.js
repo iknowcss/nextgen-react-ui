@@ -52,6 +52,8 @@ describe('mobile validation', () => {
     { validation: false, testCase: ' ()+6150000000' },
     { validation: false, testCase: ' ()+1234567890' },
     { validation: false, testCase: ' ()+6200000000' },
+    { validation: false, testCase: ' ()+0200000000' },
+    { validation: false, testCase: ' ()+61200000000' },
     { validation: false, testCase: 6200000000 },
     { validation: null, testCase: undefined },
     { validation: null, testCase: '' },
