@@ -31,13 +31,19 @@
         return r.startLong.test(value);
     },
 
-    isValid: function (value) {
-        // Sanity check
+    hasValidCharacters: function (value) {
         if (typeof value === 'undefined') {
             return false;
         }
-        // Fail on invalid characters
         if (!r.validCharacters.test(value)) {
+            return false;
+        }
+        return true;
+    },
+
+    isValid: function (value) {
+        // Sanity check
+        if (!r.hasValidCharacters(value)) {
             return false;
         }
 
@@ -45,16 +51,21 @@
         if (cleanValue.length === 0) {
             return false;
         }
-        if (r.startShortAU.test(cleanValue)) {
+        if (r.treatAsShortAU(cleanValue)) {
             return r.validCleanShortAU.test(cleanValue);
         }
-        if (r.startLongAU.test(cleanValue)) {
+        if (r.treatAsLongAU(cleanValue)) {
             return r.validCleanLongAU.test(cleanValue);
         }
         return cleanValue.length <= r.longMaxLengthINTL;
     },
 
     isValidMobileAU: function (value) {
+        // Sanity check
+        if (!r.hasValidCharacters(value)) {
+            return false;
+        }
+
         var cleanValue = r.clean(value);
         if (r.treatAsShortAU(cleanValue)) {
             return r.validCleanShortMobileAU.test(cleanValue);

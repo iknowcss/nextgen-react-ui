@@ -59,7 +59,7 @@ describe('mobile validation', () => {
     { validation: null, testCase: '' },
   ];
 
-  validate.only(mobileValidation, 'mobile.blur.customFormat', []
+  validate(mobileValidation, 'mobile.blur.customFormat', []
     .concat(blurValidCases)
     .concat(blurInvalidCases)
   );
