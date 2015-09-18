@@ -4,9 +4,7 @@
     delimitCharactersG: /[ \(\)\+]/g,
     startShortAU: /^0/,
     startLongAU: /^61/,
-    validCleanShortLengthAU: /^(?=0)[0-9]{1,10}$/,
-    validCleanLongLengthINTL: /^(?!0)[0-9]{1,15}$/,
-    validCleanLongMobileLengthAU: /^(?=61)[0-9]{1,11}$/,
+    startLong: /^(?!0)/,
     validCleanShortAU: /^0(?!550)[0-9]{9}$/,
     validCleanLongAU: /^61(?!550)[0-9]{0,13}$/,
 
@@ -27,11 +25,20 @@
         return r.startLongAU.test(value);
     },
 
+    treatAsLong: function (value) {
+        return r.startLong.test(value);
+    },
+
     isValid: function (value) {
         // Sanity check
         if (typeof value === 'undefined') {
             return false;
         }
+        // Fail on invalid characters
+        if (!r.validCharacters.test(value)) {
+            return false;
+        }
+
         var cleanValue = r.clean(value);
         if (cleanValue.length === 0) {
             return false;
@@ -42,7 +49,7 @@
         if (r.startLongAU.test(cleanValue)) {
             return r.validCleanLongAU.test(cleanValue);
         }
-        return r.validCleanLongLengthINTL.test(cleanValue);
+        return cleanValue.length <= r.longMaxLengthINTL;
     },
 
     hasValidCharacters: function (value) {

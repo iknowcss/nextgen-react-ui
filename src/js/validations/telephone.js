@@ -26,10 +26,17 @@ var all = {
                 if (cleanValue.length === 0) {
                     return true;
                 }
-                // Otherwise verify that it has the right length for a
-                // short AU number or an international number
-                return phoneValidation.validCleanShortLengthAU.test(cleanValue)
-                    || phoneValidation.validCleanLongLengthINTL.test(cleanValue);
+
+                // Verify length constraints for short Australian numbers or
+                // long international numbers
+                if (phoneValidation.treatAsShortAU(cleanValue)) {
+                    return cleanValue.length <= phoneValidation.shortMaxLengthAU;
+                }
+                if (phoneValidation.treatAsLong(cleanValue)) {
+                    return cleanValue.length <= phoneValidation.longMaxLengthINTL;
+                }
+
+                return true;
             }
         },
         blur: {
