@@ -1,10 +1,10 @@
-import all from '../../src/js/validations/all';
+import telephoneValidation from '../../src/js/validations/telephone';
 import get from 'lodash/object/get';
 
 function xvalidate() {}
 
 function validate(path, tests, isOnly) {
-  const sut = get(all, path);
+  const sut = get(telephoneValidation, path);
   const desc = isOnly ? describe.only : describe;
 
   desc(path, () => {
