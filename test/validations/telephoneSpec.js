@@ -1,36 +1,8 @@
 import telephoneValidation from '../../src/js/validations/telephone';
-import get from 'lodash/object/get';
-
-function xvalidate() {}
-
-function validate(path, tests, isOnly) {
-  const sut = get(telephoneValidation, path);
-  const desc = isOnly ? describe.only : describe;
-
-  desc(path, () => {
-    (tests || []).forEach(test => {
-      if (test.hasOwnProperty('validation')) {
-        let expected = test.validation;
-        it(`"${test.testCase}" validation result "${expected}"`, () => {
-          expect(sut(test.testCase)).to.eq(expected);
-        });
-      }
-      if (test.hasOwnProperty('formatResult')) {
-        let expected = test.formatResult;
-        it(`"${test.testCase}" to be formatted as "${expected}"`, () => {
-          expect(sut(test.testCase)).to.eq(expected);
-        });
-      }
-    });
-  });
-}
-
-validate.only = function (path, tests) {
-  return validate(path, tests, true);
-};
+import {validate} from '../validationUtil'
 
 describe('validation', () => {
-  validate('telephone.change.customFormat', [
+  validate(telephoneValidation, 'telephone.change.customFormat', [
     { validation: true, testCase: '' },
     { validation: true, testCase: ' ()+' },
     { validation: true, testCase: ' ()+ 0123456789' },
@@ -74,18 +46,18 @@ describe('validation', () => {
     { validation: null, testCase: '' },
   ];
 
-  validate('telephone.blur.customFormat', []
+  validate(telephoneValidation, 'telephone.blur.customFormat', []
     .concat(telephoneBlurValidCases)
     .concat(telephoneBlurInvalidCases)
   );
 
-  validate('telephone.convertForModel', [
+  validate(telephoneValidation, 'telephone.convertForModel', [
     { testCase: ' 1(2)3+4)5(6 7++89  ', formatResult: '123456789' }
   ].concat(telephoneBlurInvalidCases.map(test => (
     { testCase: test.testCase, formatResult: test.testCase }
   ))));
 
-  validate('telephone.convertForView', []
+  validate(telephoneValidation, 'telephone.convertForView', []
     .concat(telephoneBlurValidCases.map(test => (
       { testCase: test.testCase, formatResult: `formatTelephone(${test.testCase})` }
     )))
