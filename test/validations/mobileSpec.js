@@ -2,8 +2,19 @@ import mobileValidation from '../../src/js/validations/mobile';
 import {validate} from '../validationUtil'
 
 describe('mobile validation', () => {
-  validate(mobileValidation, 'mobile.change.customFormat', [
-    { validation: true, testCase: '' }
+  validate.only(mobileValidation, 'mobile.change.customFormat', [
+    { validation: true, testCase: '' },
+    { validation: true, testCase: ' ()+' },
+    { validation: true, testCase: ' ()+ 0123456789' },
+    { validation: true, testCase: ' ()+ 012345678' },
+    { validation: true, testCase: ' ()+ 0' },
+    { validation: true, testCase: ' ()+ 61000000000' },
+    { validation: true, testCase: ' ()+ 61' },
+    { validation: false, testCase: '#' },
+    { validation: false, testCase: ' ()+ 01234567890' },
+    { validation: false, testCase: '0#' },
+    { validation: false, testCase: ' ()+ 610000000000' },
+    { validation: false, testCase: '61#' },
   ]);
 
   // let telephoneBlurValidCases = [
