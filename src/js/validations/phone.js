@@ -19,6 +19,10 @@
         return stringValue.replace(r.delimitCharactersG, '');
     },
 
+    cleanAndShortenAU: function (value) {
+        return r.clean(value).replace(r.startLongAU, '0');
+    },
+
     treatAsShortAU: function (value) {
         return r.startShortAU.test(value);
     },

@@ -48,12 +48,10 @@ var all = {
             required: true
         },
         convertForModel: function (value) {
-            if (!all.mobile.blur.customFormat.call(this, value)) {
+            if (!value || !phoneValidation.isValidMobileAU(value)) {
                 return value;
             }
-            value = value.replace(/[ \(\)\+]/g, '');
-            value = value.replace(/^61/, '0');
-            return value;
+            return phoneValidation.cleanAndShortenAU(value);
         },
         convertForView: function (value) {
             if (!all.mobile.blur.customFormat.call(this, value)) {
