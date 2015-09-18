@@ -85,7 +85,7 @@ describe('validation', () => {
     { testCase: test.testCase, formatResult: test.testCase }
   ))));
 
-  validate.only('telephone.convertForView', []
+  validate('telephone.convertForView', []
     .concat(telephoneBlurValidCases.map(test => (
       { testCase: test.testCase, formatResult: `formatTelephone(${test.testCase})` }
     )))
