@@ -40,25 +40,13 @@ var all = {
         },
         blur: {
             customFormat: function (value) {
-                if (_.isUndefined(value)) {
+                if (!value) {
                     return null;
                 }
 
-                value = value.toString();
+                value = phoneValidation.clean(value);
 
-                // If it's blank then ignore and let the 'required' rule show an error
-                if (value === '') {
-                    return null;
-                }
-
-                if (!all.mobile.change.customFormat(value)) {
-                    return false;
-                }
-
-                // Remove non-digit chars
-                value = value.replace(/[ \(\)\+]/g, '');
-                // Check that mobile number without 61 doesn't have more than 10 digits
-                if (value[0] === '0') {
+                if (phoneValidation.treatAsShortAU(value)) {
                     //Mobile numbers should not start with 0550
                     if (!(/^0550/.test(value))) {
                         return ((/^04|05/.test(value)) && value.length === 10);

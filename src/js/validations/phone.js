@@ -6,6 +6,7 @@
     startLongAU: /^61/,
     startLong: /^(?!0)/,
     validCleanShortAU: /^0(?!550)[0-9]{9}$/,
+    // validCleanShortMobileAU: /^0(?!550)[0-9]{9}$/,
     validCleanLongAU: /^61(?!550)[0-9]{0,13}$/,
 
     shortMaxLengthAU: 10,
