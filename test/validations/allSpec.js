@@ -1,8 +1,8 @@
 import all from '../../src/js/validations/all';
+import get from 'lodash/object/get';
 
-describe('validations', () => {
-  describe.only('telephone', () => {
-    const validCases = [
+describe.only('', () => {
+    validate('telephone.change.customFormat', [
       '',
       ' ()+',
       ' ()+ 0123456789',
@@ -10,26 +10,63 @@ describe('validations', () => {
       ' ()+ 0',
       ' ()+ 123456789012345',
       ' ()+ 1',
-    ];
-
-    const invalidCases = [
+    ], [
       '#',
       ' ()+ 01234567890',
       '0#',
       ' ()+ 1234567890123456',
       '1#',
-    ];
+    ]);
 
-    validCases.forEach(testCase => {
-      it(`"${testCase}" is VALID`, () => {
-        expect(all.telephone.change.customFormat(testCase)).to.be.true;
+    validate('telephone.blur.customFormat', [
+      ' ()+0551000000',
+      ' ()+61',
+      ' ()+6155',
+      ' ()+61551',
+      ' ()+615510000000000',
+      ' ()+1',
+      ' ()+123456789012345',
+    ], [,
+      ' ',
+      '#',
+      ' ()+ 01234567890',
+      '0#',
+      ' ()+ 1234567890123456',
+      '1#',
+      ' ()+',
+      ' ()+05510000000',
+      ' ()+055100000',
+      ' ()+0550000000',
+      ' ()+61550',
+      ' ()+615500000000000',
+      ' ()+6155100000000000',
+      ' ()+1234567890123456',
+    ], [
+      undefined,
+      '',
+    ]);
+});
+
+function validate(path, validCases, invalidCases, nullCases) {
+  const sut = get(all, path);
+
+  describe(path, () => {
+    (validCases || []).forEach(testCase => {
+      it(`"${testCase}" is valid`, () => {
+        expect(sut(testCase)).to.be.true;
       });
     });
 
-    invalidCases.forEach(testCase => {
-      it(`"${testCase}" is INVALID`, () => {
-        expect(all.telephone.change.customFormat(testCase)).to.be.false;
+    (invalidCases || []).forEach(testCase => {
+      it(`"${testCase}" is invalid`, () => {
+        expect(sut(testCase)).to.be.false;
+      });
+    });
+
+    (nullCases || []).forEach(testCase => {
+      it(`"${testCase}" is null`, () => {
+        expect(sut(testCase)).to.be.null;
       });
     });
   });
-});
+}

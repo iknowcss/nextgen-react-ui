@@ -47,6 +47,8 @@ var phoneValidation = (function () {
 
 ///////////////
 
+var _ = require('underscore');
+
 var all = {
     telephone: {
         change: {
@@ -55,21 +57,20 @@ var all = {
                 if (!phoneValidation.hasValidCharacters(value)) {
                     return false;
                 }
+
                 // If it's empty after a cleaning then PASS
-                if (phoneValidation.clean(value).length === 0) {
+                var cleanValue = phoneValidation.clean(value);
+                if (cleanValue.length === 0) {
                     return true;
                 }
                 // Otherwise verify that it has the right length for a
                 // short AU number or an international number
-                value = phoneValidation.clean(value);
-                return phoneValidation.validCleanShortLengthAU.test(value)
-                    || phoneValidation.validCleanLongLengthINTL.test(value);
+                return phoneValidation.validCleanShortLengthAU.test(cleanValue)
+                    || phoneValidation.validCleanLongLengthINTL.test(cleanValue);
             }
         },
         blur: {
             customFormat: function (value) {
-                // log('blur customFormat in: ', value);
-
                 if (_.isUndefined(value)) {
                     return null;
                 }
@@ -77,8 +78,7 @@ var all = {
                 value = value.toString();
 
                 // First check that only valid chars have been entered
-                if (!this.validationTypes.telephone.change.customFormat(value)) {
-                    // log('blur customFormat invalid change.format: ', value);
+                if (!all.telephone.change.customFormat(value)) {
                     return false;
                 }
 
@@ -106,7 +106,6 @@ var all = {
                     return false;
                 }
 
-                // log('blur customFormat valid: ', value);
                 return true;
             },
         }
