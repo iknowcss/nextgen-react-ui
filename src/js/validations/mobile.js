@@ -43,18 +43,7 @@ var all = {
                 if (!value) {
                     return null;
                 }
-
-                value = phoneValidation.clean(value);
-
-                if (phoneValidation.treatAsShortAU(value)) {
-                    //Mobile numbers should not start with 0550
-                    if (!(/^0550/.test(value))) {
-                        return ((/^04|05/.test(value)) && value.length === 10);
-                    }
-                } else if (/^61/.test(value)) {
-                    return ((/^614|615/.test(value)) && value.length === 11);
-                }
-                return false;
+                return phoneValidation.isValidMobileAU(value);
             },
             required: true
         },

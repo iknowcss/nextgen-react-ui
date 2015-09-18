@@ -6,8 +6,9 @@
     startLongAU: /^61/,
     startLong: /^(?!0)/,
     validCleanShortAU: /^0(?!550)[0-9]{9}$/,
-    // validCleanShortMobileAU: /^0(?!550)[0-9]{9}$/,
+    validCleanShortMobileAU: /^0(?!550)[45][0-9]{8}$/,
     validCleanLongAU: /^61(?!550)[0-9]{0,13}$/,
+    validCleanLongMobileAU: /^61(?!550)[45][0-9]{8}$/,
 
     shortMaxLengthAU: 10,
     longMaxLengthINTL: 15,
@@ -51,6 +52,16 @@
             return r.validCleanLongAU.test(cleanValue);
         }
         return cleanValue.length <= r.longMaxLengthINTL;
+    },
+
+    isValidMobileAU: function (value) {
+        var cleanValue = r.clean(value);
+        if (r.treatAsShortAU(cleanValue)) {
+            return r.validCleanShortMobileAU.test(cleanValue);
+        } else if (r.treatAsLongAU(cleanValue)) {
+            return r.validCleanLongMobileAU.test(cleanValue);
+        }
+        return false;
     },
 
     hasValidCharacters: function (value) {
