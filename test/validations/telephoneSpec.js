@@ -25,6 +25,7 @@ describe('validation', () => {
     { validation: true, testCase: ' ()+615510000000000' },
     { validation: true, testCase: ' ()+1' },
     { validation: true, testCase: ' ()+123456789012345' },
+    { validation: true, testCase: 123456789012345 },
   ];
 
   let telephoneBlurInvalidCases = [
@@ -42,6 +43,7 @@ describe('validation', () => {
     { validation: false, testCase: ' ()+615500000000000' },
     { validation: false, testCase: ' ()+6155100000000000' },
     { validation: false, testCase: ' ()+1234567890123456' },
+    { validation: false, testCase: 1234567890123456 },
     { validation: null, testCase: undefined },
     { validation: null, testCase: '' },
   ];
