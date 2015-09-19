@@ -73,13 +73,13 @@ describe('mobile validation', () => {
     { testCase: test.testCase, formatResult: test.testCase }
   ))));
 
-  validate.only(mobileValidation, 'mobile.convertForView', []
+  validate(mobileValidation, 'mobile.convertForView', []
     .concat(blurValidCases.map(test => (
       { testCase: test.testCase, formatResult: `formatTelephone(${test.testCase})` }
     )))
     .concat(blurInvalidCases.map(test => (
       { testCase: test.testCase, formatResult: test.testCase }
-    )))
+    ))) 
   ); 
 
 });

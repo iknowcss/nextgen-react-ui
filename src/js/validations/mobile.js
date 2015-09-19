@@ -54,7 +54,7 @@ var all = {
             return phoneValidation.cleanAndShortenAU(value);
         },
         convertForView: function (value) {
-            if (!all.mobile.blur.customFormat.call(this, value)) {
+            if (!value || !phoneValidation.isValidMobileAU(value)) {
                 return value;
             }
             return format.formatTelephone(value);
