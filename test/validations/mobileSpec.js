@@ -64,7 +64,7 @@ describe('mobile validation', () => {
     .concat(blurInvalidCases)
   );
 
-  validate.only(mobileValidation, 'mobile.convertForModel', [
+  validate(mobileValidation, 'mobile.convertForModel', [
     { testCase: ' 0(4)0+1)5(6 7++890  ', formatResult: '0401567890' },
     { testCase: ' 0(5)0+1)5(6 7++890  ', formatResult: '0501567890' },
     { testCase: ' 61(4)0+1)5(6 7++890  ', formatResult: '0401567890' },
@@ -73,13 +73,13 @@ describe('mobile validation', () => {
     { testCase: test.testCase, formatResult: test.testCase }
   ))));
 
-  // validate(telephoneValidation, 'telephone.convertForView', []
-  //   .concat(telephoneBlurValidCases.map(test => (
-  //     { testCase: test.testCase, formatResult: `formatTelephone(${test.testCase})` }
-  //   )))
-  //   .concat(telephoneBlurInvalidCases.map(test => (
-  //     { testCase: test.testCase, formatResult: test.testCase }
-  //   ))
-  // ));
+  validate.only(mobileValidation, 'mobile.convertForView', []
+    .concat(blurValidCases.map(test => (
+      { testCase: test.testCase, formatResult: `formatTelephone(${test.testCase})` }
+    )))
+    .concat(blurInvalidCases.map(test => (
+      { testCase: test.testCase, formatResult: test.testCase }
+    )))
+  ); 
 
 });
