@@ -13,10 +13,10 @@ var all = {
             required: true
         },
         convertForModel: function (value) {
-            if (!all.email.blur.regexp.test(value)) {
+            if (!value || !emailValidation.isValid(value)) {
                 return value;
             }
-            return (trim(value) === '') ? value : trim(value);
+            return trim(value);;
         }
     },
 };

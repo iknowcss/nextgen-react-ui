@@ -30,7 +30,7 @@ describe('validation', () => {
   ];
 
   validate.only(emailValidation, 'email.convertForModel', [
-    // { testCase: '', formatResult: '' }
+    { testCase: undefined, formatResult: undefined }
   ]
     .concat(validEmails.map(e => (
       { testCase: e, formatResult: trim(e) }
