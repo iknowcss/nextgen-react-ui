@@ -1,4 +1,4 @@
-import mobileValidation from '../../src/js/validations/mobile';
+import mobileValidation from '../../src/js/validations/mobilePart';
 import {validate} from '../validationUtil'
 
 describe('mobile validation', () => {

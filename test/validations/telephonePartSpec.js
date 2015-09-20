@@ -1,4 +1,4 @@
-import telephoneValidation from '../../src/js/validations/telephone';
+import telephoneValidation from '../../src/js/validations/telephonePart';
 import {validate} from '../validationUtil'
 
 describe('validation', () => {
