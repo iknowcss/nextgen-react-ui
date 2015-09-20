@@ -6,9 +6,7 @@ var all = {
     email: {
         priority: ['required', 'regexp', 'customFormat'],
         change: {
-            customFormat: function (value) {
-                return (/^[a-z0-9_\.\-@ ]*$/i.test(value));
-            }
+            customFormat: emailValidation.hasValidCharacters,
         },
         blur: {
             regexp: /^(\s*)+[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}(\s*)$/,
