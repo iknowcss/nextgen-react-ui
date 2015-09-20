@@ -29,7 +29,7 @@ describe('validation', () => {
     ' AZaz09._%+-@AZaz09....AZaz ',
   ];
 
-  validate.only(emailValidation, 'email.convertForModel', [
+  validate(emailValidation, 'email.convertForModel', [
     { testCase: undefined, formatResult: undefined }
   ]
     .concat(validEmails.map(e => (

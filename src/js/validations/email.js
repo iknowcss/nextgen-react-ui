@@ -1,7 +1,7 @@
 var r = {
     whitespace: /^\s*|\s*$/,
     validCharacters: /^[a-z0-9_\.\-@ ]*$/i,
-    validEmail: /^(\s*)+[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}(\s*)$/,
+    validEmail: /^\s*[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\s*$/,
 
     clean: function (value) {
         return value.replace(r.whitespace, '');
