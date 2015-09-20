@@ -36,13 +36,8 @@
     },
 
     hasValidCharacters: function (value) {
-        if (typeof value === 'undefined') {
-            return false;
-        }
-        if (!r.validCharacters.test(value)) {
-            return false;
-        }
-        return true;
+        return typeof value !== 'undefined'
+            && r.validCharacters.test(value);
     },
 
     isValid: function (value) {
@@ -76,10 +71,6 @@
             return r.validCleanLongMobileAU.test(cleanValue);
         }
         return false;
-    },
-
-    hasValidCharacters: function (value) {
-        return r.validCharacters.test(value);
     }
 };
 
