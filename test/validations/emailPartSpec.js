@@ -1,8 +1,9 @@
 import emailValidation from '../../src/js/validations/emailPart';
-import {validate} from '../validationUtil'
+import {validate} from '../validationUtil';
+import trim from 'lodash/string/trim';
 
 describe('validation', () => {
-  validate.only(emailValidation, 'email.change.customFormat', [
+  validate(emailValidation, 'email.change.customFormat', [
     { validation: true, testCase: undefined },
     { validation: true, testCase: 123 },
     { validation: true, testCase: '' },
@@ -10,23 +11,33 @@ describe('validation', () => {
     { validation: false, testCase: 'martín@example.com' },
   ]);
 
-  // let blurValidTests = [
-  //   { validation: true, testCase: ' ()+0551000000' },
-  // ];
+  let invalidEmails = [
+    '  ',
+    ' @example.com ',
+    ' test@.com ',
+    ' test@example. ',
+    ' testexample.com ',
+    ' test@examplecom ',
+    ' test@example.c ',
+    ' test@example.cooom ',
+    ' test@exámple.com ',
+  ];
 
-  // let blurInvalidTests = [
-  //   { validation: false, testCase: ' ' },
-  // ];
+  let validEmails = [
+    ' test@example.com ',
+    ' test@example.com.au ',
+    ' AZaz09._%+-@AZaz09....AZaz ',
+  ];
 
-  // validate(emailValidation, 'email.blur.customFormat', []
-  //   .concat(blurValidTests)
-  //   .concat(blurInvalidTests)
-  // );
-
-  // validate(emailValidation, 'email.convertForModel', [
-  //   { testCase: ' 1(2)3+4)5(6 7++89  ', formatResult: '123456789' }
-  // ].concat(blurInvalidTests.map(test => (
-  //   { testCase: test.testCase, formatResult: test.testCase }
-  // ))));
+  validate.only(emailValidation, 'email.convertForModel', [
+    // { testCase: '', formatResult: '' }
+  ]
+    .concat(validEmails.map(e => (
+      { testCase: e, formatResult: trim(e) }
+    )))
+    .concat(invalidEmails.map(e => (
+      { testCase: e, formatResult: e }
+    )))
+  );
 
 });
