@@ -4,8 +4,20 @@ import classnames from 'classnames';
 export default class InputText extends Component {
 
     render() {
+        let alignmentClass;
+        if (this.props.textAlignment) {
+            alignmentClass = `align-${this.props.textAlignment}`;
+        }
+        let className = classnames('text-input', alignmentClass);
+
         return (
-            <input/>
+            <input
+                autoComplete="off"
+                id={this.props.elementId}
+                name={this.props.name}
+                placeholder={this.props.placeholder}
+                className={className}
+            />
         );
         /*
          {{#if symbol}}
@@ -23,6 +35,9 @@ export default class InputText extends Component {
 }
 
 InputText.propTypes = {
+    elementId: PropTypes.string,
+    name: PropTypes.string,
+    placeholder: PropTypes.string
 };
 
 InputText.defaultValues = {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react/addons';
 
-import FormInputSelect from '../component/forminputselect';
+import InputText from '../component/inputtext';
 
 export default class Default extends Component {
 
