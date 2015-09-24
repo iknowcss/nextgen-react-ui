@@ -13,7 +13,7 @@ export default class Default extends Component {
           { value: 'A', label: 'Alpha' },
           { value: 'B', label: 'Bravo' },
           { value: 'C', label: 'Charlie' },
-          { value: 'D', label: 'Delta' },
+          { value: 'D', label: 'Delta' }
         ]}
       />
     );
