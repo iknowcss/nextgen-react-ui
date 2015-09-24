@@ -4,6 +4,15 @@
 2. Install/use the right version of node
     * `nvm install v0.12.7`
     * `nvm use 0.12`
+    * 
+In windows7 I get: C:\Development\nextgen>nvm install v0.12.7
+C:\Users\M040398\.nvm\node-vv0.12.7 doesn't exist, (need to downloaded first?) v0.12.7
+
+Which 'nvm' ?
+    * https://www.npmjs.com/package/nvm => https://github.com/brianloveswords/nvm
+    * https://github.com/creationix/nvm
+    * https://github.com/coreybutler/nvm-windows
+    
 3. Install/update the node_modules
     * `npm i`
 4. Install broccoli CLI
