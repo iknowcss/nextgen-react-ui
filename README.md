@@ -5,7 +5,7 @@
 0. Install [nvm](https://github.com/creationix/nvm)
 1. Install and use the right version of node
    * `nvm install v0.12.7`
-   * `nvm use 0.12`
+   * `nvm use 0.12.7`
 2. Install broccoli CLI
    * `npm i -g broccoli-cli`
 3. Clone this repo
@@ -15,13 +15,13 @@
 
 ## Windows
 
-0. Install [nvm-windows](https://github.com/coreybutler/nvm-windows); The installed will detect the installed node version @ 'c:\Development\dev-tools\ui\nodejs' and will create a symlink in this folder so that 'nvm' can manage also the version we already use for 'nextgen-ip-ui'; All the nodejs versions will be installed by 'nvm' into this folder: 'c:\Users\<username>\AppData\Roaming\nvm' 
-1. Open "cmd" -> Run as Administrator
+0. Install [nvm-windows](https://github.com/coreybutler/nvm-windows); The installer will detect the installed nodejs version @  'c:\Development\dev-tools\ui\nodejs' and will create a symlink in this folder so that 'nvm' can manage also the version we already use for 'nextgen-ip-ui'; All the nodejs versions will be installed by 'nvm' @  'c:\Users\<username>\AppData\Roaming\nvm' 
+1. Open "cmd" -> "Run as Administrator"
 2. Configure proxy for nvm: 
-  * `nvm proxy "http://gatehousek1.stgeorge.com.au:8080"`
-3. Install and use the right version of node (never use the 'v' prefix for specifying the nodejs version). If you get a message like 'Node.js vx.y.z is only available in 32-bit.' then try 'nvm install x.y.z. 32' (by default nvm will try to download the arch of your OS which is 64)
+  * `nvm proxy "http://<your proxy host>:<proxy port>"`
+3. Install and use the right version of node (never use the 'v' prefix for specifying the nodejs version). If you get a message like 'Node.js vx.y.z is only available in 32-bit.' then try 'nvm install x.y.z. 32' (by default nvm will try to match the arch of your OS which is 64)
    * `nvm install 0.12.7`
-   * `nvm use 0.12`
+   * `nvm use 0.12.7`
 
 Other options for windows:
 
