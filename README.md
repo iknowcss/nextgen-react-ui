@@ -22,6 +22,12 @@
 3. Install and use the right version of node (never use the 'v' prefix for specifying the nodejs version). If you get a message like 'Node.js vx.y.z is only available in 32-bit.' then try 'nvm install x.y.z. 32' (by default nvm will try to match the arch of your OS which is 64)
    * `nvm install 0.12.7`
    * `nvm use 0.12.7`
+4. Install broccoli CLI
+   * `npm i -g broccoli-cli`
+5. Clone this repo
+6. Open command prompt and navigate to repo directory
+7. Install/update the node_modules
+   * `npm i`
 
 Other options for windows:
 
