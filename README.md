@@ -15,10 +15,17 @@
 
 ## Windows
 
-Windows doesn't have nvm which makes managing multiple versions of node unpleasant. Do one of the following:
+0. Install [nvm-windows](https://github.com/coreybutler/nvm-windows); The installed will detect the installed node version @ 'c:\Development\dev-tools\ui\nodejs' and will create a symlink in this folder so that 'nvm' can manage also the version we already use for 'nextgen-ip-ui'; All the nodejs versions will be installed by 'nvm' into this folder: 'c:\Users\<username>\AppData\Roaming\nvm' 
+1. Open "cmd" -> Run as Administrator
+2. Configure proxy for nvm: 
+  * `nvm proxy "http://gatehousek1.stgeorge.com.au:8080"`
+3. Install and use the right version of node (never use the 'v' prefix for specifying the nodejs version). If you get a message like 'Node.js vx.y.z is only available in 32-bit.' then try 'nvm install x.y.z. 32' (by default nvm will try to download the arch of your OS which is 64)
+   * `nvm install 0.12.7`
+   * `nvm use 0.12`
 
-* Install node manually from [nodejs.org](http://nodejs.org/dist/)
-* Try and get [nvm-windows](https://github.com/coreybutler/nvm-windows) working (tip: don't bother)
+Other options for windows:
+
+* Install node manually from [nodejs.org](http://nodejs.org/dist/) but you need to play with the PATH to switch between node versions OR
 * Don't use Windows; download [VirtualBox](https://www.virtualbox.org/), install [Linux Mint](http://www.linuxmint.com/download.php), breathe a sigh of relief
 
 # Build tasks
