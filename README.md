@@ -1,22 +1,16 @@
 # Setup
 
+0. Install NVM
+   * For OS X/Linux see [here](https://github.com/creationix/nvm)
+   * For Windows follow the instructions in INSTALL_WINDOWS.md
 1. Clone the repo
 2. Install/use the right version of node
-    * `nvm install v0.12.7`
-    * `nvm use 0.12`
-    * 
-In windows7 I get: C:\Development\nextgen>nvm install v0.12.7
-C:\Users\M040398\.nvm\node-vv0.12.7 doesn't exist, (need to downloaded first?) v0.12.7
-
-Which 'nvm' ?
-    * https://www.npmjs.com/package/nvm => https://github.com/brianloveswords/nvm
-    * https://github.com/creationix/nvm
-    * https://github.com/coreybutler/nvm-windows
-    
+   * `nvm install v0.12.7`
+   * `nvm use 0.12`
 3. Install/update the node_modules
-    * `npm i`
+   * `npm i`
 4. Install broccoli CLI
-    * `npm i -g broccoli-cli`
+   * `npm i -g broccoli-cli`
 
 # Build tasks
 
