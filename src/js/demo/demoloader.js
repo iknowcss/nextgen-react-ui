@@ -1,20 +1,25 @@
 import React, {Component, PropType} from 'react/addons';
 
+// Load the demo data
+const DEMOS = [
+  'inputselect',
+  'inputtext'
+].map(demoName => ({
+  name: demoName,
+  props: require(`./${demoName}.js`)
+}));
+
 export default class DemoLoader extends Component {
   constructor(...args) {
     super(...args);
-    this.demos = [
-      'inputselect',
-      'inputtext'
-    ];
-    this.setDemo(this.demos[0]);
+    this.setDemo(DEMOS[0]);
   }
 
-  setDemo(demoName) {
+  setDemo(demo) {
     const newState = {
-      currentDemo: demoName,
-      currentProps: defaultProps[demoName],
-      currentPropsJson: JSON.stringify(defaultProps[demoName], ' ', 2)
+      currentDemo: demo.name,
+      currentProps: demo.props,
+      currentPropsJson: JSON.stringify(demo.props, ' ', 2)
     };
     if (this.state) {
       this.setState(newState);
@@ -24,7 +29,13 @@ export default class DemoLoader extends Component {
   }
 
   demoChanged(event) {
-    this.setDemo(event.target.value);
+    const demoName = event.target.value;
+    for (let i in DEMOS) {
+      if (DEMOS[i].name === demoName) {
+        this.setDemo(DEMOS[i]);
+        break;
+      }
+    }
   }
 
   updateCurrentPropsJson(event) {
@@ -52,8 +63,8 @@ export default class DemoLoader extends Component {
       <div>
         <label htmlFor="demo-select">Pick a Demo: &nbsp;</label>
         <select id="demo-select" value={this.state.currentDemo} onChange={this.demoChanged.bind(this)}>
-          {this.demos.map((demo, i) =>
-            <option value={demo} key={i}>{demo}</option>
+          {DEMOS.map((demo, i) =>
+            <option value={demo.name} key={i}>{demo.name}</option>
           )}
         </select>
 
@@ -91,20 +102,4 @@ export default class DemoLoader extends Component {
 
 DemoLoader.propTypes = {
 
-};
-
-const defaultProps = {
-  inputselect: {
-    name: 'phone',
-    placeholder: 'Select',
-    options: [
-      { value: 'A', label: 'Alpha' },
-      { value: 'B', label: 'Bravo' },
-      { value: 'C', label: 'Charlie' },
-      { value: 'D', label: 'Delta' }
-    ]
-  },
-  inputtext: {
-
-  }
 };
