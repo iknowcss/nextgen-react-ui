@@ -1,7 +1,7 @@
 import React from 'react/addons';
-import Demo from './demo/inputselect';
+import DemoLoader from './demo/demoloader';
 
-const element = <Demo/>;
+const element = <DemoLoader/>;
 
 React.render(
   element,
