@@ -7,11 +7,13 @@ export default class DemoLoader extends Component {
       'inputselect',
       'inputtext'
     ];
-    this.state = {};
+    this.state = {
+      currentDemo: this.demos[0]
+    };
   }
 
-  setDemo(demo) {
-    this.setState({ currentDemo: demo });
+  demoChanged(event) {
+    this.setState({ currentDemo: event.target.value });
   }
 
   renderCurrentDemo() {
@@ -22,16 +24,19 @@ export default class DemoLoader extends Component {
 
   render() {
     return (
-      <table><tr>
-        <td><ul>
-          {this.demos.map(demo => <li>
-            <a href="#" onClick={() => this.setDemo(demo)}>{demo}</a>
-          </li>)}
-        </ul></td>
-        <td>
+      <div>
+        <label htmlFor="demo-select">Pick a Demo: &nbsp;</label>
+        <select id="demo-select" value={this.state.currentDemo} onChange={this.demoChanged.bind(this)}>
+          {this.demos.map((demo, i) =>
+            <option value={demo} key={i}>{demo}</option>
+          )}
+        </select>
+        <hr/>
+        <h1>{this.state.currentDemo}</h1>
+        <div>
           {this.renderCurrentDemo()}
-        </td>
-      </tr></table>
+        </div>
+      </div>
     );
   }
 }

@@ -25,7 +25,7 @@ var scripts = webpackify(projectSrc, {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    //new webpack.optimize.UglifyJsPlugin()
   ]
 });
 
