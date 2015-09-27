@@ -7,19 +7,30 @@ export default class DemoLoader extends Component {
       'inputselect',
       'inputtext'
     ];
-    this.state = {
-      currentDemo: this.demos[0]
+    this.setDemo(this.demos[0]);
+  }
+
+  setDemo(demoName) {
+    const newState = {
+      currentDemo: demoName,
+      currentProps: defaultProps[demoName]
     };
+    if (this.state) {
+      this.setState(newState);
+    } else {
+      this.state = newState;
+    }
   }
 
   demoChanged(event) {
-    this.setState({ currentDemo: event.target.value });
+    this.setDemo(event.target.value);
   }
 
   renderCurrentDemo() {
-    if (!this.state.currentDemo) return null;
-    let Demo = require('./' + this.state.currentDemo);
-    return <Demo/>
+    const currentDemo = this.state.currentDemo;
+    if (!currentDemo) return null;
+    let Demo = require(`../component/${currentDemo}`);
+    return <Demo {...this.state.currentProps}/>
   }
 
   render() {
@@ -43,4 +54,20 @@ export default class DemoLoader extends Component {
 
 DemoLoader.propTypes = {
 
+};
+
+const defaultProps = {
+  inputselect: {
+    name: 'phone',
+    placeholder: 'Select',
+    options: [
+      { value: 'A', label: 'Alpha' },
+      { value: 'B', label: 'Bravo' },
+      { value: 'C', label: 'Charlie' },
+      { value: 'D', label: 'Delta' }
+    ]
+  },
+  inputtext: {
+
+  }
 };
