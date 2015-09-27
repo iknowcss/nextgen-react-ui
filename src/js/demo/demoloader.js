@@ -13,7 +13,8 @@ export default class DemoLoader extends Component {
   setDemo(demoName) {
     const newState = {
       currentDemo: demoName,
-      currentProps: defaultProps[demoName]
+      currentProps: defaultProps[demoName],
+      currentPropsJson: JSON.stringify(defaultProps[demoName], ' ', 2)
     };
     if (this.state) {
       this.setState(newState);
@@ -24,6 +25,21 @@ export default class DemoLoader extends Component {
 
   demoChanged(event) {
     this.setDemo(event.target.value);
+  }
+
+  applyProps() {
+    let currentProps;
+    try {
+      currentProps = JSON.parse(this.state.currentPropsJson);
+    } catch (e) {
+      alert('Could not parse JSON!', e);
+      return;
+    }
+    this.setState({ currentProps });
+  }
+
+  updateCurrentPropsJson(event) {
+    this.setState({ currentPropsJson: event.target.value });
   }
 
   renderCurrentDemo() {
@@ -42,8 +58,24 @@ export default class DemoLoader extends Component {
             <option value={demo} key={i}>{demo}</option>
           )}
         </select>
-        <hr/>
+
+        <div>
+          <h2>Props</h2>
+          <textarea
+            cols="50"
+            rows="10"
+            ref="propTextarea"
+            value={this.state.currentPropsJson}
+            onChange={this.updateCurrentPropsJson.bind(this)}
+          />
+          <div>
+            <button onClick={this.applyProps.bind(this)}>Apply props</button>
+          </div>
+        </div>
+
         <h1>{this.state.currentDemo}</h1>
+        <hr/>
+
         <div>
           {this.renderCurrentDemo()}
         </div>
