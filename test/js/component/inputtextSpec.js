@@ -3,7 +3,7 @@ import TestUtils from 'react/lib/ReactTestUtils';
 
 import InputText from '../../../src/js/component/inputtext';
 
-describe('inputtext Component', () => {
+describe.only('inputtext Component', () => {
     let element;
     let span;
     let input;

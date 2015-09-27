@@ -29,6 +29,29 @@ export default class InputText extends Component {
     }
 
     render() {
+        /*{{#if symbol}}
+
+          <span class="input-wrap"
+            {{#if symbol '===' '$'}}data-symbol="&#36;"{{else}}
+            {{#if symbol '===' '%'}}data-symbol="&#37;"{{else}}
+            {{#if symbol '===' 'units'}}data-symbol="units"{{/if}}{{/if}}{{/if}}
+          >
+            <input
+              id="{{elementId}}"
+              autocomplete="off"
+              placeholder="{{placeholder}}"
+              name="{{name}}"
+              type="text"
+              class="text-input
+                {{#if symbol '===' '%'}}col-4{{/if}}
+                {{#if symbol '===' 'units'}}col-6{{/if}}"
+              {{#if limit_length}}maxlength="{{limit_length}}"{{/if}}
+              {{#if describe}}aria-describedby="{{describe}}"{{/if}}
+            />
+          </span>
+
+          {{/if}}*/
+
         const input = this.renderInput();
         if (this.props.symbol) {
             return <span>{input}</span>
