@@ -27,19 +27,15 @@ export default class DemoLoader extends Component {
     this.setDemo(event.target.value);
   }
 
-  applyProps() {
-    let currentProps;
-    try {
-      currentProps = JSON.parse(this.state.currentPropsJson);
-    } catch (e) {
-      alert('Could not parse JSON!', e);
-      return;
-    }
-    this.setState({ currentProps });
-  }
-
   updateCurrentPropsJson(event) {
-    this.setState({ currentPropsJson: event.target.value });
+    const newState = { currentPropsJson: event.target.value };
+    try {
+      newState.currentProps = JSON.parse(newState.currentPropsJson);
+      newState.jsonError = false;
+    } catch (e) {
+      newState.jsonError = true;
+    }
+    this.setState(newState);
   }
 
   renderCurrentDemo() {
@@ -50,6 +46,8 @@ export default class DemoLoader extends Component {
   }
 
   render() {
+    const rendered = this.renderCurrentDemo();
+
     return (
       <div>
         <label htmlFor="demo-select">Pick a Demo: &nbsp;</label>
@@ -67,18 +65,25 @@ export default class DemoLoader extends Component {
             ref="propTextarea"
             value={this.state.currentPropsJson}
             onChange={this.updateCurrentPropsJson.bind(this)}
+            style={{
+              'color': this.state.jsonError ? 'red' : null
+            }}
           />
-          <div>
-            <button onClick={this.applyProps.bind(this)}>Apply props</button>
-          </div>
         </div>
 
         <h1>{this.state.currentDemo}</h1>
         <hr/>
 
-        <div>
-          {this.renderCurrentDemo()}
-        </div>
+        <table width="100%">
+          <tr>
+            <th>Output</th>
+            <th>HTML</th>
+          </tr>
+          <tr>
+            <td width="50%">{rendered}</td>
+            <td width="50%">{React.renderToString(rendered)}</td>
+          </tr>
+        </table>
       </div>
     );
   }
