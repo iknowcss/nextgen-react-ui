@@ -1,13 +1,4 @@
 import React from 'react/addons';
-import Demo from './demo/inputselect';
+import DemoLoader from './demo/demoloader';
 
-const element = <Demo/>;
-
-React.render(
-  element,
-  document.getElementById('app-container')
-);
-
-document.body.ondblclick = function () {
-  console.log(React.renderToString(element));
-};
+React.render(<DemoLoader/>, document.getElementById('app-container'));
